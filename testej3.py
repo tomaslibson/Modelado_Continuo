@@ -6,7 +6,7 @@ alpha = 1
 
 # Campo vectorial
 def f(u, v):
-    return v, -u + 1/alpha
+    return v, -u + 1/alpha + 0.005 * u**2
 
 # Sistema para odeint
 def derivadas_para_odeint(uv, theta):
@@ -19,7 +19,7 @@ ax.set_aspect(1.0)
 
 # Intervalo angular (varias vueltas)
 ti = 0.0
-tf = 8*np.pi   # 4 vueltas (es u (theta) = u (theta + 2pi))
+tf = 8*np.pi   # 4 vueltas
 nt = 2000
 lt = np.linspace(ti, tf, nt)
 
