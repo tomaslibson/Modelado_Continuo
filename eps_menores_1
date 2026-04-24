@@ -9,22 +9,18 @@ def system(theta, Y):
     return [y, -u + 1/alpha]
 
 thetas = np.linspace(0, 6*np.pi, 2000)
-epsilons = [0.2, 0.6, 0.9, 1.0, 1.5]
+epsilons = [0.2, 0.6, 0.9, 1.0, 1.1,  1.5, 2]
 
 for eps in epsilons:
     
-    if eps < 1:
-        theta_range = np.linspace(0, 2*np.pi, 2000)
-    else:
-        theta_range = np.linspace(-np.pi/2, np.pi/2, 2000)
-    # condiciones iniciales
     u0 = (1 + eps)/alpha
     y0 = 0
     
-    sol = solve_ivp(system,
-                [theta_range[0], theta_range[-1]],
-                [u0, y0],
-                t_eval=theta_range)
+    sol = solve_ivp(system, 
+                    [0, 2*np.pi], 
+                    [u0, y0], 
+                    t_eval=np.linspace(0 , 2*np.pi, 2000))
+    
     
     u = sol.y[0]
     theta = sol.t
