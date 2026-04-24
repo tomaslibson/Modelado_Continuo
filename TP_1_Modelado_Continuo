@@ -1,0 +1,48 @@
+from scipy.integrate import solve_ivp
+import numpy as np
+import matplotlib.pyplot as plt
+
+alpha = 1
+
+def system(theta, Y):
+    u, y = Y
+    return [y, -u + 1/alpha]
+
+thetas = np.linspace(0, 6*np.pi, 2000)
+epsilons = [0.2, 0.6, 0.9, 1.0, 1.5]
+
+for eps in epsilons:
+    
+    if eps < 1:
+        theta_range = np.linspace(0, 2*np.pi, 2000)
+    else:
+        theta_range = np.linspace(-np.pi/2, np.pi/2, 2000)
+    # condiciones iniciales
+    u0 = (1 + eps)/alpha
+    y0 = 0
+    
+    sol = solve_ivp(system,
+                [theta_range[0], theta_range[-1]],
+                [u0, y0],
+                t_eval=theta_range)
+    
+    u = sol.y[0]
+    theta = sol.t
+    
+    r = 1/u
+    x = r * np.cos(theta)
+    y_cart = r * np.sin(theta)
+    
+    # nueva figura para cada ε
+    plt.figure(figsize=(5,5))
+    
+    plt.plot(x, y_cart)
+    plt.scatter(0, 0, color='orange')
+    
+    plt.axis('equal')
+    plt.title(f"Órbita para ε = {eps}")
+    plt.xlabel("x")
+    plt.ylabel("y")
+    plt.grid()
+    
+    plt.show()
