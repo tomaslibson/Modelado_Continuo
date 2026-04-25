@@ -20,7 +20,7 @@ ax.set_aspect(1.0)
 # Intervalo angular (varias vueltas)
 ti = 0.0
 tf = 8*np.pi   # 4 vueltas (es u (theta) = u (theta + 2pi))
-nt = 2000
+nt = 100
 lt = np.linspace(ti, tf, nt)
 
 # Distintos valores de excentricidad
