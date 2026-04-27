@@ -47,7 +47,7 @@ for alpha in alphas:
     plt.ylim(-5, 5)
     plt.grid()
     plt.legend()
-    plt.title("Órbitas (ε < 1, δ = 0.05, α=" + str(alpha) + ")")
+    plt.title("Órbitas (δ = 0.05, ε < 1, α=" + str(alpha) + ")")
     plt.show()
 
 
@@ -77,5 +77,5 @@ for alpha in alphas:
     plt.ylim(-5, 5)
     plt.grid()
     plt.legend()
-    plt.title("Órbitas (ε ≥ 1, δ = 0.05 α=" + str(alpha) + ")")
+    plt.title("Órbitas (δ = 0.05, ε ≥ 1, α=" + str(alpha) + ")")
     plt.show()
