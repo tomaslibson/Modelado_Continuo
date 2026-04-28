@@ -5,13 +5,13 @@ from scipy.integrate import odeint
 alphas = [ 0.5 , 1, 3] 
 
 # Campo vectorial
-def f(u, v):
+def f_delta_05(u, v):
     return v, -u + 1/alpha + 0.05 * u**2
 
 # Sistema para odeint
-def derivadas_para_odeint(uv, theta):
+def derivadas_delta_05(uv, theta):
     u, v = uv
-    du_dtheta, dv_dtheta = f(u, v)
+    du_dtheta, dv_dtheta = f_delta_05(u, v)
     return du_dtheta, dv_dtheta
 
 
@@ -33,7 +33,7 @@ for alpha in alphas:
         v0 = 0
         estado_inicial = [u0, v0]
 
-        sol = odeint(derivadas_para_odeint, estado_inicial, lt)
+        sol = odeint(derivadas_delta_05, estado_inicial, lt)
         u, v = sol.T
         r = 1/u
 
@@ -63,7 +63,7 @@ for alpha in alphas:
         v0 = 0
         estado_inicial = [u0, v0]
 
-        sol = odeint(derivadas_para_odeint, estado_inicial, lt)
+        sol = odeint(derivadas_delta_05, estado_inicial, lt)
         u, v = sol.T
         r = 1/u
 
